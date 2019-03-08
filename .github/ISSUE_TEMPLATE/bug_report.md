@@ -35,4 +35,4 @@ about: Create a report to help us improve
 
 ### Logs
 
-Join the log file `<appname>-portable.log` to this issue.
+Join the log file `[appname]-portable.log` to this issue.
