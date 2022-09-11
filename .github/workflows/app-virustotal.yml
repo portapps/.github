@@ -1,0 +1,40 @@
+name: app-virustotal
+
+on:
+  workflow_call:
+    secrets:
+      github_token:
+        required: true
+      vt_api_key:
+        required: true
+      vt_monitor_api_key:
+        required: true
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Prepare
+        run: |
+          echo "CURDATE=$(date -u +'%Y%m%d')" >> $GITHUB_ENV
+      -
+        name: VirusTotal Monitor Scan
+        uses: crazy-max/ghaction-virustotal@v3
+        with:
+          vt_api_key: ${{ secrets.vt_monitor_api_key }}
+          vt_monitor: true
+          monitor_path: /portapps/${{ env.CURDATE }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}
+          update_release_body: false
+          github_token: ${{ secrets.github_token }}
+          files: |
+            ${{ github.event.repository.name }}-(win32|win64).exe
+      -
+        name: VirusTotal Scan
+        uses: crazy-max/ghaction-virustotal@v3
+        with:
+          vt_api_key: ${{ secrets.vt_api_key }}
+          update_release_body: true
+          github_token: ${{ secrets.github_token }}
+          files: |
+            ${{ github.event.repository.name }}-(win32|win64).exe
