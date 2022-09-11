@@ -1,4 +1,4 @@
-name: gosum
+name: app-gosum
 
 on:
   workflow_call:
