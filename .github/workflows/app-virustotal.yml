@@ -3,8 +3,6 @@ name: app-virustotal
 on:
   workflow_call:
     secrets:
-      github_token:
-        required: true
       vt_api_key:
         required: true
       vt_monitor_api_key:
@@ -26,7 +24,7 @@ jobs:
           vt_monitor: true
           monitor_path: /portapps/${{ env.CURDATE }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}
           update_release_body: false
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ github.token }}
           files: |
             ${{ github.event.repository.name }}-(win32|win64).exe
       -
@@ -35,6 +33,6 @@ jobs:
         with:
           vt_api_key: ${{ secrets.vt_api_key }}
           update_release_body: true
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ github.token }}
           files: |
             ${{ github.event.repository.name }}-(win32|win64).exe
