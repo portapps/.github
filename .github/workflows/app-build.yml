@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: ${{ env.GO_VERSION }}
+          cache: true
       -
         name: Set up Node
         uses: actions/setup-node@v3
@@ -71,14 +72,6 @@ jobs:
           repository: portapps/portapps
           ref: ${{ env.PORTAPPS_VERSION }}
           path: ${{ env.PORTAPPS_DIR }}
-      -
-        name: Cache Go modules
-        uses: actions/cache@v3
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
       -
         name: Build
         run: |
