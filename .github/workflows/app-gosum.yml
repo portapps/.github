@@ -2,13 +2,17 @@ name: app-gosum
 
 on:
   workflow_call:
-
-env:
-  GO_VERSION: "1.20"
+    inputs:
+      go_version:
+        required: false
+        type: string
+        default: '1.20'
 
 jobs:
   run:
     runs-on: ubuntu-latest
+    env:
+      GO_VERSION: ${{ inputs.go_version }}
     steps:
       -
         name: Checkout

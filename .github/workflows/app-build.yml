@@ -2,17 +2,37 @@ name: app-build
 
 on:
   workflow_call:
-
-env:
-  GO_VERSION: "1.20"
-  NODE_VERSION: "16"
-  JAVA_VERSION: "11"
-  ANT_VERSION: "1.10.8"
-  JAVA_TOOL_OPTIONS: "-Dfile.encoding=UTF8"
+    inputs:
+      go_version:
+        required: false
+        type: string
+        default: '1.20'
+      node_version:
+        required: false
+        type: string
+        default: '16'
+      java_version:
+        required: false
+        type: string
+        default: '11'
+      ant_version:
+        required: false
+        type: string
+        default: '1.10.8'
+      java_tool_options:
+        required: false
+        type: string
+        default: '-Dfile.encoding=UTF8'
 
 jobs:
   run:
     runs-on: windows-latest
+    env:
+      GO_VERSION: ${{ inputs.go_version }}
+      NODE_VERSION: ${{ inputs.node_version }}
+      JAVA_VERSION: ${{ inputs.java_version }}
+      ANT_VERSION: ${{ inputs.ant_version }}
+      JAVA_TOOL_OPTIONS: ${{ inputs.java_tool_options }}
     steps:
       -
         name: Checkout
