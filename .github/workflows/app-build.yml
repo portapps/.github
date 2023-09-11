@@ -105,7 +105,7 @@ jobs:
           path: bin/release/*
       -
         name: GitHub Release
-        uses: crazy-max/ghaction-github-release@v1
+        uses: crazy-max/ghaction-github-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           draft: true
