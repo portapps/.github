@@ -18,7 +18,7 @@ jobs:
           echo "CURDATE=$(date -u +'%Y%m%d')" >> $GITHUB_ENV
       -
         name: VirusTotal Monitor Scan
-        uses: crazy-max/ghaction-virustotal@v3
+        uses: crazy-max/ghaction-virustotal@v4
         with:
           vt_api_key: ${{ secrets.vt_monitor_api_key }}
           vt_monitor: true
@@ -29,7 +29,7 @@ jobs:
             ${{ github.event.repository.name }}-(win32|win64).exe
       -
         name: VirusTotal Scan
-        uses: crazy-max/ghaction-virustotal@v3
+        uses: crazy-max/ghaction-virustotal@v4
         with:
           vt_api_key: ${{ secrets.vt_api_key }}
           update_release_body: true
