@@ -6,7 +6,7 @@ on:
       go_version:
         required: false
         type: string
-        default: '1.20'
+        default: '1.21'
       node_version:
         required: false
         type: string
@@ -23,6 +23,11 @@ on:
         required: false
         type: string
         default: '-Dfile.encoding=UTF8'
+
+env:
+  # don't auto-upgrade the gotoolchain
+  # https://github.com/docker-library/golang/issues/472
+  GOTOOLCHAIN: local
 
 jobs:
   run:
