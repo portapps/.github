@@ -98,6 +98,12 @@ jobs:
           ref: ${{ env.PORTAPPS_VERSION }}
           path: ${{ env.PORTAPPS_DIR }}
       -
+        name: Cache Portapps bin
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.PORTAPPS_DIR }}/bin
+          key: portapps-bin-${{ env.PORTAPPS_VERSION }}
+      -
         name: Build
         run: |
           ant release -Dcore.dir=${{ env.PORTAPPS_DIR }}
