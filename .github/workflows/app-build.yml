@@ -99,7 +99,7 @@ jobs:
           path: ${{ env.PORTAPPS_DIR }}
       -
         name: Cache Portapps bin
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ env.PORTAPPS_DIR }}/bin
           key: portapps-bin-${{ env.PORTAPPS_VERSION }}
