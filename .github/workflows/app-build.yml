@@ -10,7 +10,7 @@ on:
       node_version:
         required: false
         type: string
-        default: '16'
+        default: '20'
       java_version:
         required: false
         type: string
