@@ -18,7 +18,7 @@ on:
       ant_version:
         required: false
         type: string
-        default: '1.10.8'
+        default: '1.10.14'
       java_tool_options:
         required: false
         type: string
@@ -60,6 +60,7 @@ jobs:
           distribution: adopt
           java-version: ${{ env.JAVA_VERSION }}
       -
+        # https://community.chocolatey.org/packages/ant
         name: Set up ANT
         run: |
           choco install ant --no-progress --force -y --version $Env:ANT_VERSION
