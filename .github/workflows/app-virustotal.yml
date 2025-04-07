@@ -8,9 +8,15 @@ on:
       vt_monitor_api_key:
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   run:
     runs-on: ubuntu-latest
+    permissions:
+      # required to write GitHub Release body
+      contents: write
     steps:
       -
         name: Prepare
