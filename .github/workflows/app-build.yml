@@ -130,7 +130,7 @@ jobs:
           fi
       -
         name: Download assets
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ${{ github.event.repository.name }}
           path: ./bin/release
