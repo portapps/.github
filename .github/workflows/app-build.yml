@@ -9,7 +9,7 @@ on:
       go_version:
         required: false
         type: string
-        default: '1.25'
+        default: '1.26'
       node_version:
         required: false
         type: string
