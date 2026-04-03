@@ -1,0 +1,18 @@
+name: zizmor
+
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+
+jobs:
+  run:
+    uses: crazy-max/.github/.github/workflows/zizmor.yml@bbd31df64ee0f097a02f12495f541f9236f18c46 # v1.2.0
+    permissions:
+      contents: read
+      security-events: write
+    with:
+      min-severity: medium
+      min-confidence: medium
+      persona: pedantic
