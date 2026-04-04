@@ -1,8 +1,5 @@
 name: app-build
 
-permissions:
-  contents: read
-
 on:
   workflow_call:
     inputs:
@@ -35,8 +32,6 @@ env:
 jobs:
   build:
     runs-on: windows-latest
-    permissions:
-      contents: read
     env:
       GO_VERSION: ${{ inputs.go_version }}
       NODE_VERSION: ${{ inputs.node_version }}
@@ -118,8 +113,6 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - build
-    permissions:
-      contents: write # required to create a GitHub release
     steps:
       -
         name: Prepare
@@ -147,4 +140,4 @@ jobs:
             bin/release/*
           name: ${{ env.GIT_TAGNAME }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}

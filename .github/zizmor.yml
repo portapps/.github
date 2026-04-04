@@ -1,4 +1,12 @@
 # https://docs.zizmor.sh/configuration/
 rules:
+  # does not apply to reusable worfklows where permissions are defined by
+  # the caller workflow and not the reusable workflow itself.
+  # https://docs.zizmor.sh/audits/#excessive-permissions
+  excessive-permissions:
+    ignore:
+      - app-build.yml
+      - app-virustotal.yml
+
   secrets-outside-env:
     disable: true
