@@ -1,8 +1,5 @@
 name: app-virustotal
 
-permissions:
-  contents: read
-
 on:
   workflow_call:
     secrets:
@@ -14,8 +11,6 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # required to write GitHub Release body
     steps:
       -
         name: Prepare
