@@ -1,0 +1,30 @@
+name: app-build smoke test
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - '.github/workflows/app-build.yml'
+      - '.github/workflows/app-build-smoke.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/app-build.yml'
+      - '.github/workflows/app-build-smoke.yml'
+
+jobs:
+  build:
+    uses: ./.github/workflows/app-build.yml
+    permissions:
+      contents: read
+    with:
+      checkout_repository: portapps/vlc-portable
+      checkout_ref: master

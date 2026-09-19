@@ -23,6 +23,14 @@ on:
         required: false
         type: string
         default: '-Dfile.encoding=UTF8'
+      checkout_repository:
+        required: false
+        type: string
+        default: ''
+      checkout_ref:
+        required: false
+        type: string
+        default: ''
 
 env:
   # don't auto-upgrade the gotoolchain
@@ -42,6 +50,9 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ inputs.checkout_repository || github.repository }}
+          ref: ${{ inputs.checkout_ref }}
       -
         name: Set up Go
         uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
@@ -57,7 +68,7 @@ jobs:
         name: Set up Java
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
         with:
-          distribution: adopt
+          distribution: temurin
           java-version: ${{ env.JAVA_VERSION }}
       -
         name: Set up ANT
