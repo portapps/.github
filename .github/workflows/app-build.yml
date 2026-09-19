@@ -18,7 +18,7 @@ on:
       ant_version:
         required: false
         type: string
-        default: '1.10.15'
+        default: '1.10.16'
       java_tool_options:
         required: false
         type: string
@@ -63,7 +63,7 @@ jobs:
         name: Set up ANT
         uses: cedx/setup-ant@da941eb444b657ea183d731ba96e59ec26411014 # v6.3.0
         with:
-          version: ${{ env.ANT_VERSION }}
+          version: '=${{ env.ANT_VERSION }}'
       -
         name: Java version
         run: |
